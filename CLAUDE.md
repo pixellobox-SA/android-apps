@@ -6,7 +6,8 @@ Apps are sideloaded, not published to Play.
 ## Build
 
 - JDK 21, Android SDK at `/opt/android-sdk` (cloud environment setup script installs it), Gradle wrapper 9.9.1, AGP 9.5.1.
-- `./gradlew assembleDebug testDebugUnitTest`. The APK is at `app/build/outputs/apk/debug/app-debug.apk`.
+- `./gradlew assembleRelease testDebugUnitTest`. The installable APK (R8-shrunk, ~2 MB) is at `app/build/outputs/apk/release/app-release.apk`.
+- Deliver it to **My Drive → Android Apps** as `Hub-<version>.apk` (Drive uploads from a session are capped at 10 MB; the debug APK is ~33 MB). Bump `versionCode` for every new APK.
 - Maven Central sometimes answers 429 (rate limit): wait and retry.
 - No emulator here (no KVM). Verify with unit tests; the person checks on the phone.
 
@@ -20,7 +21,7 @@ Versions live in `gradle/libs.versions.toml`.
 
 - Never commit secrets, tokens or personal identifiers (phone numbers, IMEIs, serials).
   Tokens are entered by the person in the app's own settings.
-- `keystore/debug.keystore` is a shared **debug** key so local and CI builds install over each other. It is not a release key.
+- `keystore/debug.keystore` is a shared debug key; debug **and** release builds are signed with it so every APK installs over the last. Swap for a private key before any store release.
 - Home-network services are reached only over Tailscale using full MagicDNS names under `taild9be91.ts.net`.
   Never expose anything publicly (no Tailscale Funnel).
 - Machines: `homeserver` (Home Assistant :8123, Music Assistant :8095, Uptime Kuma :3001),

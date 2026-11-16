@@ -32,7 +32,11 @@ android {
         }
         release {
             isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
+            // Personal sideloaded app: sign release with the shared key too, so it can be
+            // installed and updated straight from Drive. Swap for a real key before any store.
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
 

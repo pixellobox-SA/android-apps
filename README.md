@@ -11,12 +11,12 @@ Personal Android apps for my Galaxy S25 FE.
 
 ## Install on the phone
 
-1. Download `app-debug.apk` (from Google Drive, or from the **Build** workflow's artifact on GitHub).
+1. Download the APK: **My Drive → Android Apps → Hub-x.y.z.apk**, or the **Build** workflow's `hub-apk` artifact on GitHub.
 2. Open it and select **Install**. Auto Blocker must be off (**Settings → Security and privacy → Auto Blocker**).
 3. Keep Tailscale connected for the Server tab.
 
 ## Build
 
 ```bash
-./gradlew assembleDebug testDebugUnitTest
+./gradlew assembleRelease testDebugUnitTest
 ```
