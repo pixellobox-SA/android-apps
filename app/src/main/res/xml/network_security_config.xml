@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- HTTPS everywhere, except plain HTTP to machines on Jacques's own tailnet
+     (traffic there is already encrypted end to end by Tailscale/WireGuard). -->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false" />
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">taild9be91.ts.net</domain>
+    </domain-config>
+</network-security-config>
